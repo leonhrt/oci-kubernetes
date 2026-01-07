@@ -11,8 +11,8 @@ spec:
     preserveResourcesOnDeletion: true
   generators:
     - list:
-      elements:
-        - cluster: oci-cluster
+        elements:
+          - cluster: oci-cluster
   template:
     metadata:
       name: argocd
@@ -42,8 +42,8 @@ metadata:
 spec:
   generators:
     - list:
-      elements:
-        - cluster: oci-cluster
+        elements:
+          - cluster: oci-cluster
   template:
     metadata:
       name: argocd-projects
@@ -71,8 +71,8 @@ metadata:
 spec:
   generators:
     - list:
-      elements:
-        - cluster: oci-cluster
+        elements:
+          - cluster: oci-cluster
   template:
     metadata:
       name: argocd-applications
