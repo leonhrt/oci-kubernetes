@@ -4,5 +4,4 @@ kind: Kustomization
 
 resources:
   - argocd.yaml
-  - external-secrets.yaml
   - ingress-nginx.yaml
