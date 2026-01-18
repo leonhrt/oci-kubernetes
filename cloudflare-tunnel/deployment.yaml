@@ -9,6 +9,9 @@ spec:
     matchLabels:
       app: cloudflared
   template:
+    metadata:
+      labels:
+        app: cloudflared
     spec:
       containers:
         - name: cloudflared
