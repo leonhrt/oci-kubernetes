@@ -7,3 +7,4 @@ resources:
   - cloudflare-tunnel.yaml
   - external-secrets.yaml
   - ingress-nginx.yaml
+  - monitoring.yaml

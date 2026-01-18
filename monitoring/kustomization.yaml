@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+helmCharts:
+  - name: victoria-metrics-k8s-stack
+    repo: https://victoriametrics.github.io/helm-charts
+    version: 0.67.0
+    namespace: monitoring
+    releaseName: victoria-metrics
+    valuesFile: values.yaml
+    includeCRDs: true

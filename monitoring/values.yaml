@@ -1,0 +1,99 @@
+# VictoriaMetrics K8s Stack Configuration
+
+# VictoriaMetrics Single Node (storage)
+vmsingle:
+  enabled: true
+  spec:
+    retentionPeriod: "14d"
+    resources:
+      requests:
+        cpu: 50m
+        memory: 256Mi
+      limits:
+        memory: 512Mi
+    storage:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+
+# VMAgent - disabled on main cluster, vmsingle scrapes locally
+# Enable only on secondary clusters for remote-write to this vmsingle
+vmagent:
+  enabled: false
+
+# Grafana
+grafana:
+  enabled: true
+  persistence:
+    enabled: false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 256Mi
+  # Default admin credentials - change or use external secret
+  adminUser: admin
+  adminPassword: admin
+
+# Alertmanager - disabled for now
+alertmanager:
+  enabled: false
+
+# VMAlert - disabled for now (no alerting rules)
+vmalert:
+  enabled: false
+
+# Prometheus Node Exporter (host metrics)
+prometheus-node-exporter:
+  enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 64Mi
+
+# Kube State Metrics (kubernetes object metrics)
+kube-state-metrics:
+  enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+    limits:
+      memory: 128Mi
+
+# Prometheus Operator CRDs - not needed for VM stack
+prometheus-operator-crds:
+  enabled: false
+
+# Default dashboards
+defaultDashboardsEnabled: true
+experimentalDashboardsEnabled: false
+
+# ServiceMonitor for kubelet metrics
+kubelet:
+  enabled: true
+
+# ServiceMonitor for API server
+kubeApiServer:
+  enabled: true
+
+# ServiceMonitor for kube-controller-manager
+kubeControllerManager:
+  enabled: true
+
+# ServiceMonitor for kube-scheduler
+kubeScheduler:
+  enabled: true
+
+# ServiceMonitor for etcd
+kubeEtcd:
+  enabled: true
+
+# ServiceMonitor for CoreDNS
+coreDns:
+  enabled: true
