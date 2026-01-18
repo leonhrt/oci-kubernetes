@@ -4,4 +4,4 @@ configs:
     dex.server: http://argocd-dex-server:5556
   cm:
     kustomize.buildOptions: --enable-helm
-    admin.enabled: "false"
+    admin.enabled: "true"
