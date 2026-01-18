@@ -4,8 +4,6 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - argocd-cm.yaml
-  - argocd-rbac-cm.yaml
   - clusters.yaml
   - externalsecret.yaml
   - ingress.yaml
@@ -18,3 +16,7 @@ helmCharts:
     namespace: argocd
     releaseName: argocd
     valuesFile: values.yaml
+
+patches:
+  - path: argocd-cm.yaml
+  - path: argocd-rbac-cm.yaml
