@@ -9,4 +9,4 @@ data:
   policy.csv: |
     g, sre@leonhrt.com, role:admin
   scopes: '[email]'
-  policy.default: role:''
+  policy.default: ""
