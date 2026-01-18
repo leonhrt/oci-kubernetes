@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: monitoring
 
+resources:
+  - ingress.yaml
+
 helmCharts:
   - name: victoria-metrics-k8s-stack
     repo: https://victoriametrics.github.io/helm-charts
