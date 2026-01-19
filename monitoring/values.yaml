@@ -41,8 +41,29 @@ grafana:
     limits:
       memory: 256Mi
   # Default admin credentials - change or use external secret
-  adminUser: admin
-  adminPassword: admin
+  admin:
+    existingSecret: ""
+
+  envFromSecrets:
+    - name: grafana-client-secret
+
+  grafana.ini:
+    server:
+      root_url: https://grafana.leonhrt.com
+    auth:
+      disable_login_form: true
+    auth.google:
+      enabled: true
+      allow_sign_up: true
+      auto_login: false
+      client_id: $__env{clientID}
+      client_secret: $__env{clientSecret}
+      scopes: openid email profile
+      auth_url: https://accounts.google.com/o/oauth2/v2/auth
+      token_url: https://oauth2.googleapis.com/token
+      api_url: https://openidconnect.googleapis.com/v1/userinfo
+      allowed_domains: leonhrt.com
+      role_attribute_path: email=='sre@leonhrt.com' && 'Admin' || 'Viewer'
 
 # Alertmanager - disabled for now
 alertmanager:
