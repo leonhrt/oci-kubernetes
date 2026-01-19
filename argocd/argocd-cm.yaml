@@ -19,5 +19,3 @@ data:
         clientID: $argocd-client-secret:clientID
         clientSecret: $argocd-client-secret:clientSecret
         redirectURI: https://argocd.leonhrt.com/api/dex/callback
-        hostedDomains:
-          - leonhrt.com
