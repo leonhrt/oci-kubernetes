@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
+  - externalsecret.yaml
   - ingress.yaml
 
 helmCharts:
