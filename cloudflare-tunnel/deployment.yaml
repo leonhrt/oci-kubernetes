@@ -25,6 +25,8 @@ spec:
           command:
             - cloudflared
             - tunnel
+            - --protocol
+            - http2
             - --no-autoupdate
             - --loglevel
             - debug
