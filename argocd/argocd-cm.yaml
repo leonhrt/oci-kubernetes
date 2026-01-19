@@ -16,6 +16,6 @@ data:
       id: google
       name: Google
       config:
-        clientID: 1012301263644-khk0m79knj2oa0h00gg3sd80keb0mj1b.apps.googleusercontent.com
-        clientSecret: $google-client-secret:clientSecret
+        clientID: $argocd-client-id:clientID
+        clientSecret: $argocd-client-secret:clientSecret
         redirectURI: https://argocd.leonhrt.com/api/dex/callback
