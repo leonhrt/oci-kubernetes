@@ -1,22 +1,32 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 
 metadata:
   name: nginx-ingress
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: https://github.com/leonhrt/oci-kubernetes
-    targetRevision: HEAD
-    path: ingress-nginx
-  destination:
-    name: oci-cluster
-    namespace: ingress-nginx
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  syncPolicy: 
+    preserveResourcesOnDeletion: true
+  generators:
+    - list:
+        elements:
+          - cluster: oci-cluster
+  template:
+    metadata:
+      name: "ingress-nginx-{{cluster}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/leonhrt/oci-kubernetes
+        targetRevision: HEAD
+        path: "ingress-nginx/overlays/{{cluster}}"
+      destination:
+        name: "{{cluster}}"
+        namespace: ingress-nginx
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
